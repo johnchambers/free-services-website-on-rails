@@ -1,9 +1,27 @@
 <?php 
+
+require 'vendor/autoload.php';
+
 #$emailTo = 'yourmail@example.com';
 #$siteTitle = 'YourSiteTitle';
 
 $emailTo = getenv('BUSINESS_CONTACT_EMAIL');
-$siteTitle = getenv('BUSINESS_NAME') . ' Website';
+$siteTitle = getenv('BUSINESS_NAME');
+
+
+
+$sendgrid_api_user = getenv('SENDGRID_USERNAME');
+$sendgrid_api_key = getenv('SENDGRID_PASSWORD');
+
+
+
+
+// using SendGrid's PHP Library - https://github.com/sendgrid/sendgrid-php
+$sendgrid = new SendGrid($sendgrid_api_user, $sendgrid_api_key);
+$email    = new SendGrid\Email();
+
+
+
 
 
 error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
@@ -27,10 +45,11 @@ if(isset($_POST['submitted'])) {
 		$emailError = 'You entered an invalid email address.';
 		$hasError = true;
 	} else {
-		$email = trim($_POST['email']);
+		$sender_email = trim($_POST['email']);
 	}
 		
 	// we need at least some content
+	/*
 	if(trim($_POST['comments']) === '') {
 		$commentError = 'You forgot to enter a message!';
 		$hasError = true;
@@ -41,23 +60,43 @@ if(isset($_POST['submitted'])) {
 			$comments = trim($_POST['comments']);
 		}
 	}
+	*/
+
+
+	$comments = 'hi';
 		
 	// upon no failure errors let's email now!
 	if(!isset($hasError)) {
 		
-		$subject = 'New message to '.$siteTitle.' from '.$name;
-		$sendCopy = trim($_POST['sendCopy']);
-		$body = "Name: $name \n\nEmail: $email \n\nMessage: $comments";
-		$headers = 'From: ' .' <'.$email.'>' . "\r\n" . 'Reply-To: ' . $email;
+		$subject = 'New message from '.$name.' through your website '.$siteTitle;
+		//$sendCopy = trim($_POST['sendCopy']);
+		$body = "Name: $name \n\nEmail: $sender_email \n\nMessage: $comments";
+		//$headers = 'From: ' .' <'.$sender_email.'>' . "\r\n" . 'Reply-To: ' . $sender_email;
 
-		mail($emailTo, $subject, $body, $headers);
+		//mail($emailTo, $subject, $body, $headers);//orig
+		
+		//sendgrid
+		/*
+		$email->addTo($emailTo)
+		      ->setFrom($sendgrid_api_user)
+		      ->setSubject($subject)
+		      ->setHtml($body);
+		*/
+		$email->addTo($emailTo)
+		      ->setFrom($sender_email)
+		      ->setSubject($subject)
+		      ->setHtml($body);
+
+		$sendgrid->send($email);
+		
+		
 		
         //Autorespond
 		$respondSubject = 'Thank you for contacting '.$siteTitle;
 		$respondBody = "Your message to $siteTitle has been delivered! \n\nWe will answer back as soon as possible.";
 		$respondHeaders = 'From: ' .' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $emailTo;
 		
-		mail($email, $respondSubject, $respondBody, $respondHeaders);
+		mail($sender_email, $respondSubject, $respondBody, $respondHeaders);
 		
         // set our boolean completion value to TRUE
 		$emailSent = true;

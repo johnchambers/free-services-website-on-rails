@@ -3,7 +3,7 @@
 	<head>
 
 		<?php
-			//require('../vendor/autoload.php'); //not working!
+			require 'vendor/autoload.php';
 			//echo 'Hi there';
 			$snapjobs_provider_id = getenv('SNAPJOBS_PROVIDER_ID');
 			$snapjobs_provider_secret = getenv('SNAPJOBS_PROVIDER_KEY');

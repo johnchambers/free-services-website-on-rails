@@ -31,7 +31,8 @@
     }
   },
   "addons": [
-    "logentries"
+    "logentries",
+	"sendgrid"
   ]
 }
 
