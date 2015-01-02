@@ -12,15 +12,18 @@
     "website"
   ],
   "env": {
-    "GITHUB_CLIENT_ID": {
-        "description": "GitHub OAuth client ID to use for authentication."
+    "BUSINESS_NAME": {
+        "description": "Whats your business name?"
     },
-    "GITHUB_CLIENT_SECRET": {
-        "description" : "GitHub OAuth client secret to use for authentication."
+    "BUSINESS_CONTACT_NUMBER": {
+        "description" : "What phone number can people call you on?"
     },
-    "GITHUB_ORG": {
-        "description" : "Only members of this GitHub organisation will have access."
-    }
+    "SNAPJOBS_PROVIDER_ID": {
+        "description" : "SnapJobs OAuth client ID to use for authentication."
+    },
+	"SNAPJOBS_PROVIDER_KEY": {
+	    "description" : "SnapJobs OAuth client secret to use for authentication."
+	}
   },
   "addons": [
     "heroku-postgresql"
