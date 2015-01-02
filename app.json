@@ -28,7 +28,7 @@
     }
   },
   "addons": [
-    "heroku-postgresql"
+    "logentries"
   ]
 }
 
