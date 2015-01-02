@@ -2,6 +2,6 @@
   "name": "Professional Services Website",
   "description": "A functional services booking website using Rails 4 and power by SnapJobs",
   "repository": "https://github.com/snapjobs/free-services-website-on-rails",
-  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",
   "keywords": ["rails", "professional", "website"]
 }
