@@ -3,5 +3,14 @@
   "description": "A functional services booking website using Rails 4 and power by SnapJobs",
   "repository": "https://github.com/snapjobs/free-services-website-on-rails",
   "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",
-  "keywords": ["rails", "professional", "website"]
+  "business_name": "Hello there",
+  "keywords": [
+    "rails", 
+    "professional", 
+    "website"
+  ],
+  "addons": [
+    "openredis",
+    "mongolab:shared-single-small"
+  ]
 }
