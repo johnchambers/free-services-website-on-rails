@@ -68,7 +68,7 @@ if(isset($_POST['submitted'])) {
 	// upon no failure errors let's email now!
 	if(!isset($hasError)) {
 		
-		$subject = 'New message from '.$name.' through your website '.$siteTitle;
+		$subject = 'Message from '.$name.' through - '.$siteTitle;
 		//$sendCopy = trim($_POST['sendCopy']);
 		$body = "Name: $name \n\nEmail: $sender_email \n\nMessage: $comments";
 		//$headers = 'From: ' .' <'.$sender_email.'>' . "\r\n" . 'Reply-To: ' . $sender_email;
