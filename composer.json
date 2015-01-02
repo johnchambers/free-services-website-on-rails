@@ -1,7 +1,8 @@
 {
   "require": {
     "monolog/monolog": "1.2.*",
-	"sendgrid/sendgrid": "2.1.1"
+	"sendgrid/sendgrid": "2.1.1",
+    "guzzlehttp/guzzle": "~5.1"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
