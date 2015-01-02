@@ -1,7 +1,7 @@
 {
-  "name": “Professional Services Website”,
+  "name": "Professional Services Website",
   "description": "A functional services booking website using Rails 4",
   "repository": "https://github.com/snapjobs/free-services-website-on-rails",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["rails”, “professional”, “website”]
+  "keywords": ["rails", "professional", "website"]
 }
