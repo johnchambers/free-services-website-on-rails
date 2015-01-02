@@ -30,9 +30,6 @@
   "addons": [
     "heroku-postgresql"
   ]
-  #"scripts": {
-  #  "postdeploy": "rake db:migrate"
-  #}
 }
 
 
