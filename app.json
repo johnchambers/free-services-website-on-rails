@@ -2,15 +2,35 @@
   "name": "Professional Services Website",
   "description": "A functional services booking website using Rails 4 and power by SnapJobs",
   "repository": "https://github.com/snapjobs/free-services-website-on-rails",
-  "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",
+  "website": "https://github.com/snapjobs/free-services-website-on-rails",
+  "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",  
+  "success_url": "/",
   "business_name": "Hello there",
   "keywords": [
     "rails", 
     "professional", 
     "website"
   ],
+  "env": {
+    "GITHUB_CLIENT_ID": {
+        "description": "GitHub OAuth client ID to use for authentication."
+    },
+    "GITHUB_CLIENT_SECRET": {
+        "description" : "GitHub OAuth client secret to use for authentication."
+    },
+    "GITHUB_ORG": {
+        "description" : "Only members of this GitHub organisation will have access."
+    }
+  },
   "addons": [
-    "openredis",
-    "mongolab:shared-single-small"
-  ]
+    "heroku-postgresql"
+  ],
+  "scripts": {
+    "postdeploy": "rake db:migrate"
+  }
 }
+
+
+
+
+
