@@ -5,16 +5,20 @@
 		<?php
 			//require('../vendor/autoload.php'); //not working!
 			//echo 'Hi there';
+			$snapjobs_provider_id = getenv('SNAPJOBS_PROVIDER_ID');
+			$snapjobs_provider_secret = getenv('SNAPJOBS_PROVIDER_KEY');
 			
 			$business_name = getenv('BUSINESS_NAME');
+			$business_contact_number = getenv('BUSINESS_CONTACT_NUMBER');
 			
+			$website_colour = getenv('WEBSITE_COLOUR');
 		?>
 
 		<!-- ==============================================
 		Title and Meta Tags
 		=============================================== -->
 		<meta charset="utf-8">
-		<title>Me Flat | Flat Personal Portfolio</title>
+		<title><?php echo $business_name ?> | <?php echo $business_name ?> Portfolio</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -102,7 +106,7 @@
 		<!-- ==============================================
 		HEADER
 		=============================================== -->
-		<header id="home" class="jumbotron">
+		<header id="home" class="jumbotron" style="background: 	<?php echo $website_colour ?>">
 		
 			<div class="container">
 			
@@ -110,7 +114,7 @@
 				
 					<div class="col-sm-6 text-col">
 					
-						<h1>Hi, I am <!--John Doe--><?php echo $business_name ?></h1>
+						<h1>Hi, I am <?php echo $business_name ?></h1>
 						<p>a visual and interaction designer</p>
 						
 					</div>
@@ -609,7 +613,7 @@
 				<header class="section-header text-center">
 				
 					<h1 class="scrollimation scale-in">Drop Me a Line</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/> Aenean purus felis, condimentum et tempor in, commodo id nibh. Fusce a lacus arcu.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/> Aenean purus felis, condimentum et tempor in, commodo id nibh. Fusce a lacus arcu. <?php echo $business_contact_number ?></p>
 				
 				</header>
 				
