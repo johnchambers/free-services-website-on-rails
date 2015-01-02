@@ -5,7 +5,6 @@
   "website": "https://github.com/snapjobs/free-services-website-on-rails",
   "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",  
   "success_url": "/",
-  "business_name": "Hello there",
   "keywords": [
     "rails", 
     "professional", 
