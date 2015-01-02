@@ -17,6 +17,9 @@
     "BUSINESS_CONTACT_NUMBER": {
         "description" : "What phone number can people call you on?"
     },
+	"BUSINESS_CONTACT_EMAIL": {
+        "description" : "What email address can people reach you with?"
+    },
     "SNAPJOBS_CLIENT_ID": {
         "description" : "Your SnapJobs API client id."
     },

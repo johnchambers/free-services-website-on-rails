@@ -1,6 +1,10 @@
 <?php 
-$emailTo = 'yourmail@example.com';
-$siteTitle = 'YourSiteTitle';
+#$emailTo = 'yourmail@example.com';
+#$siteTitle = 'YourSiteTitle';
+
+$emailTo = getenv('BUSINESS_CONTACT_EMAIL');
+$siteTitle = getenv('BUSINESS_NAME') . ' Website';
+
 
 error_reporting(E_ALL ^ E_NOTICE); // hide all basic notices from PHP
 
