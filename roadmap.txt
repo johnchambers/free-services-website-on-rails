@@ -1,0 +1,12 @@
+ROAD MAP
+========
+
+1. Clean 1 Page bootstrap website on Heroku
+2. Basic config details set in Heroku (Business Name, Contact Number, SnapJobs ID, SnapJobs Password, etc)
+3. Colour config
+
+
+Later
+=====
+3. Skills pulled from SnapJobs
+4. Services pulled from SnapJobs
