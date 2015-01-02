@@ -1,6 +1,6 @@
 {
   "name": "Professional Services Website",
-  "description": "A functional services booking website using Rails 4 and power by SnapJobs",
+  "description": "A services booking website powered by SnapJobs (Rails 4)",
   "repository": "https://github.com/snapjobs/free-services-website-on-rails",
   "website": "https://github.com/snapjobs/free-services-website-on-rails",
   "logo": "https://snapjobs.co/assets/heroku_button_logo.jpg",  
@@ -22,7 +22,10 @@
     },
 	"SNAPJOBS_PROVIDER_KEY": {
 	    "description" : "SnapJobs OAuth client secret to use for authentication."
-	}
+	},
+	"WEBSITE_COLOUR": {
+        "description" : "What colour would you like your website to be?"
+    }
   },
   "addons": [
     "heroku-postgresql"
