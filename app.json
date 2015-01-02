@@ -17,11 +17,11 @@
     "BUSINESS_CONTACT_NUMBER": {
         "description" : "What phone number can people call you on?"
     },
-    "SNAPJOBS_PROVIDER_ID": {
-        "description" : "SnapJobs OAuth client ID to use for authentication."
+    "SNAPJOBS_CLIENT_ID": {
+        "description" : "Your SnapJobs API client id."
     },
-	"SNAPJOBS_PROVIDER_KEY": {
-	    "description" : "SnapJobs OAuth client secret to use for authentication."
+	"SNAPJOBS_CLIENT_SECRET": {
+	    "description" : "Your SnapJobs API client secret."
 	},
 	"WEBSITE_COLOUR": {
         "description" : "What colour would you like your website to be?"
