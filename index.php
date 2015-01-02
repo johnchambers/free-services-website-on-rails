@@ -663,7 +663,7 @@
 					</div>
 					
 					<div class="col-sm-6 text-right scrollimation fade-in">
-						<p>&copy;2014 Me Flat Theme by <a href="">Qthemes</a></p>
+						<p>&copy;2015 Powered by <a href="http://snapjobs.co">SnapJobs</a></p>
 					</div>
 					
 				</div>
