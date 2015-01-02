@@ -1,1 +1,5 @@
-Hi there
+<?php
+
+	echo 'Hi there';
+
+?>
