@@ -1,24 +1,130 @@
 ﻿<!DOCTYPE html>
 <html lang="en-US" class="no-js">
 	<head>
-
 		<?php
 			require 'vendor/autoload.php';
-			//echo 'Hi there';
-			$snapjobs_provider_id = getenv('SNAPJOBS_PROVIDER_ID');
-			$snapjobs_provider_secret = getenv('SNAPJOBS_PROVIDER_KEY');
-			
+
+			$snapjobs_provider_id = getenv('SNAPJOBS_PROVIDER_ID') ? getenv('SNAPJOBS_PROVIDER_ID') : '1';
+
+			$snapjobs_provider_secret = getenv('SNAPJOBS_PROVIDER_KEY') ? getenv('SNAPJOBS_PROVIDER_KEY') : '';
+					
 			$business_name = getenv('BUSINESS_NAME');
 			$business_contact_number = getenv('BUSINESS_CONTACT_NUMBER');
 			
 			$website_colour = getenv('WEBSITE_COLOUR');
+			
+			$facebook_url = getenv('FACEBOOK_URL');
+			$twitter_url = getenv('TWITTER_URL');
+			$linkedin_url = getenv('LINKEDIN_URL');
+			$googleplus_url = getenv('GOOGLEPLUS_URL');
+			$dribble_url = getenv('DRIBBLE_URL');
+			
+		?>	
+	
+	
+
+		<?php
+
+		$client = new GuzzleHttp\Client();
+		
+		try {
+			
+			 //GITHUB
+		     //$res = $client->get('https://api.github.com/user', ['auth' =>  [$snapjobs_provider_id, $snapjobs_provider_secret]]);
+		
+			// Send a request to https://snapjobs.co/api/v1/users/1
+
+			//SnapJobs production url
+			$res = $client->get('https://snapjobs.co/api/v1/users/' . $snapjobs_provider_id);
+		
+		} catch (ResponseException $e) {
+		    echo $e->getRequest() . "\n";
+		    if ($e->hasResponse()) {
+		        echo $e->getResponse() . "\n";
+		    }
+			echo '1';
+			exit;
+		} catch (ClientException $e) {
+			echo $e->getRequest() . "\n";
+		    if ($e->hasResponse()) {
+		        echo $e->getResponse() . "\n";
+		    }
+			echo '2';
+			exit;
+		}
+		 catch (Guzzle\Http\Exception\ClientErrorResponseException $e) {
+			echo $e->getRequest() . "\n";
+		    if ($e->hasResponse()) {
+		        echo $e->getResponse() . "\n";
+		    }
+			echo '3';
+			exit;
+		} catch (Guzzle\Http\Exception\ServerErrorResponseException $e) {
+			echo $e->getRequest() . "\n";
+		    if ($e->hasResponse()) {
+		        echo $e->getResponse() . "\n";
+		    }
+			echo '4';
+			exit;
+		} catch (Guzzle\Http\Exception\BadResponseException $e) {
+			echo $e->getRequest() . "\n";
+		    if ($e->hasResponse()) {
+		        echo $e->getResponse() . "\n";
+		    }
+			echo '5';
+			exit;
+		} catch ( Exception $e) {
+			echo "Check Your Authorisation settings in Heroku!\n\n";
+			//echo "See documentation here...";
+			exit;
+		}
+
+
+		//echo $res->getStatusCode();
+		// "200"
+		
+		//echo $res->getHeader('content-type');
+		// 'application/json; charset=utf8'
+		//echo $res->getBody();
+		// {"type":"User"...'
+			
+		
+		
+		//print_r($res);
+		$json = $res->json();	
+		//echo $json['count'];
+	
+	/*
+		echo '<pre>';	
+		var_export($json);
+		echo '</pre>';
+	*/
+		
+		// Outputs the JSON decoded data
+		//github
+		$login = $json['login'];
+		$avatar_url = $json['avatar_url'];
+		
+		//snapjobs
+		$first_name = $json['users'][1]['first_name'];
+		$last_name = $json['users'][1]['last_name'];
+		$bio = $json['users'][1]['bio'];
+		
+		$avatar_url = $json['users'][1]['avatar']['avatar']['url'];
+		
+		
+		$trade = $json['users'][1]['trade']['name'];
+		$location = $json['users'][1]['location']['name'];
+		
+		$skills = $json['users'][1]['skills'];
+		
 		?>
 
 		<!-- ==============================================
 		Title and Meta Tags
 		=============================================== -->
 		<meta charset="utf-8">
-		<title><?php echo $business_name ?> | <?php echo $business_name ?> Portfolio</title>
+		<title><?php echo $business_name ?> | <?php echo $trade ?> in <?php echo $location ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -87,7 +193,7 @@
 						</li>
 						<li id="logo">
 							<a href="#home" class="scrollto">
-								<h1>J<span>D</span></h1>
+								<h1>J<span>C</span></h1>
 							</a>
 						</li>
 						<li>
@@ -114,8 +220,8 @@
 				
 					<div class="col-sm-6 text-col">
 					
-						<h1>Hi, I am <?php echo $business_name ?></h1>
-						<p>a visual and interaction designer</p>
+						<h1>I'm <?php //echo $business_name ?> <?php echo $first_name ?> <?php echo $last_name ?></h1>
+						<p>a <?php echo $trade ?> from <?php echo $location ?></p>
 						
 					</div>
 					
@@ -160,6 +266,20 @@
 			
 				<div class="row services">
 				
+					<?php foreach($skills as $skill): ?>					
+						<div class="col-md-3 col-sm-6 item scrollimation fade-up">
+
+							<div class="icon">
+								<img class="img-responsive img-center" src="assets/service1.png" alt="" />
+							</div>
+
+							<h2><?php echo $skill['name'] ?></h2>
+							<p><?php echo $skill['description'] ?></p>
+
+						</div>
+					<?php endforeach; ?>
+				
+					<!--
 					<div class="col-md-3 col-sm-6 item scrollimation fade-up">
 					
 						<div class="icon">
@@ -203,6 +323,7 @@
 						<p>Donec quam velit, aliquam at tempor quis, blandit quis nisi. Proin orci enim, dictum vel leo eu, blandit vulputate turpis.</p>
 					
 					</div>
+					-->
 				
 				</div>
 			
@@ -258,9 +379,15 @@
 				
 					<div class="col-sm-8 col-sm-offset-2">
 					
+						<!--
 						<img class="img-responsive img-center img-circle scrollimation fade-left" src="assets/about.jpg" alt="" />
+						-->
+					
+						<img class="img-responsive img-center img-circle scrollimation fade-left" src="<?php echo $avatar_url ?>" alt="" width="280" height="280" />
+						
+						
 				
-						<p class="text-center scrollimation fade-in">Cras convallis nunc vitae massa convallis fermentum. Fusce feugiat, sem at congue rutrum, nisl mauris facilisis tellus, vel interdum nulla enim at purus. Integer metus justo, pellentesque ac bibendum a, dapibus sed nisl. Donec vitae suscipit lacus. Vivamus lacinia nisi eget erat luctus, id mollis nunc molestie. </p>
+						<p class="text-center scrollimation fade-in"><?php echo $bio ?></p>
 					
 					</div>
 					
@@ -284,6 +411,15 @@
 					
 					<h1 class="text-center scrollimation fade-in">I Got the Skills</h1>
 					
+					<?php foreach($skills as $skill): ?>					
+						<div class="col-sm-6 col-md-3 text-center">
+							<span class="chart" data-percent="80"><span class="percent">80</span></span>
+							<h2 class="text-center"><?php echo $skill['name'] ?></h2>
+						</div>
+					<?php endforeach; ?>
+					
+					
+					<!--
 					<div class="col-sm-6 col-md-3 text-center">
 						<span class="chart" data-percent="80"><span class="percent">80</span></span>
 						<h2 class="text-center">Web Design</h2>
@@ -300,6 +436,7 @@
 						<span class="chart" data-percent="90"><span class="percent">90</span></span>
 						<h2 class="text-center">UI / UX</h2>
 					</div>
+					-->
 					
 				</div><!--End row -->
 			
@@ -653,12 +790,22 @@
 				<div class="row">
 				
 					<div class="col-sm-6">
-						<ul class="social-links">
-							<li class="scrollimation fade-right d4"><a href="#link"><i class="fa fa-twitter fa-fw"></i></a></li>
-							<li class="scrollimation fade-right d3"><a href="#link"><i class="fa fa-facebook fa-fw"></i></a></li>
-							<li class="scrollimation fade-right d2"><a href="#link"><i class="fa fa-google-plus fa-fw"></i></a></li>
-							<li class="scrollimation fade-right d1"><a href="#link"><i class="fa fa-dribbble fa-fw"></i></a></li>
-							<li class="scrollimation fade-right"><a href="#link"><i class="fa fa-linkedin fa-fw"></i></a></li>
+						<ul class="social-links">							
+							<?php if($twitter_url): ?>
+							<li class="scrollimation fade-right d4"><a href="<?php echo $twitter_url ?>" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>
+							<?php endif; ?>
+							<?php if ($facebook_url): ?>
+							<li class="scrollimation fade-right d3"><a href="<?php echo $facebook_url ?>" target="_blank"><i class="fa fa-facebook fa-fw"></i></a></li>
+							<?php endif; ?>
+							<?php if ($googleplus_url): ?>
+							<li class="scrollimation fade-right d2"><a href="<?php echo $googleplus_url ?>" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
+							<?php endif; ?>
+							<?php if ($dribble_url): ?>
+							<li class="scrollimation fade-right d1"><a href="<?php echo $dribble_url ?>" target="_blank"><i class="fa fa-dribbble fa-fw"></i></a></li>
+							<?php endif; ?>
+							<?php if ($linkedin_url): ?>
+							<li class="scrollimation fade-right"><a href="<?php echo $linkedin_url ?>" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+							<?php endif; ?>
 						</ul>
 					</div>
 					
